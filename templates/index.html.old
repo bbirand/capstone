@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Welcome to the Stock Ticker</title>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.css" rel="stylesheet" type="text/css">
+    <script src="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    {{ dat_script|safe }}
+	</head>
+	<body>
+  <div class="container">
+		  <div class="row">
+        {% if stock_name %}
+          <h1>Showing: {{stock_name}}</h1>
+          <div class="col-xs-8">
+            {{ dat_div|safe }}
+          </div>
+        {% else %}
+          <h1>Enter a stock name</h1>
+        {% endif %}
+        <div class="col-xs-4">
+          <form method="get" action="/">
+            <b>Please enter a stock ticker eg. GOOG, and check desired features.</b> <br/>
+            Ticker symbol: <input type="text" name="symbol" value="{{stock_name}}"/> <br/>
+            <input type="checkbox" name="features" value="Close">Closing price<br>
+            <input type="checkbox" name="features" value="Adj. Close">Adjusted closing price<br>
+            <input type="checkbox" name="features" value="Open">Opening price<br>
+            <input type="checkbox" name="features" value="Adj. Open">Adjusted opening price<br>
+            <input type="submit"/>
+          </form><form method="get" action="/">
+            <input type="submit" value="Clear"/>
+          </form>
+         </div>
+		  </div>
+  </div>
+	</body>
+</html>

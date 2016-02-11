@@ -1,0 +1,390 @@
+<html>
+<head>
+<title>Amazon Scraper</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/static/dc.css"/>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link href="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.css" rel="stylesheet" type="text/css">
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <!--
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          -->
+          <a class="navbar-brand" href="#">Amazon Scraper</a>
+        </div>
+        <!--
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div> --><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+
+<div class="container" style="margin-top:40px">
+
+      <div class="starter-template" style="padding: 40px 15px; text-align: center;">
+        <h1>Amazon.com Analysis Dashboard</h1>
+        <p class="lead">Amazon.com has millions of reviews in tens of thousands of product categories. This data can be extremely valuable for market research purposes. In this project, we aim to createa dashboard that brands can use to track their competitors, understand the most important features in a certain category, and discover which product categories are in markets that are underserved by current offerings.</p>
+      </div>
+
+  <div class="row">
+  <h2>Category Analysis</h2>
+
+     <div id="type-chart">
+      <strong>Types</strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:typeChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+
+     <div id="count-chart">
+      <strong>Review Count</strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:countChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+
+     <div id="time-chart">
+      <strong>Daily Reviews </strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:timeChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+
+    <!--
+     <div id="main-line-chart">
+      <strong>Main line</strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:mainLineChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+     <div id="line-chart">
+      <strong>Line</strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:lineChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+     <div id="type-chart">
+      <strong>Type</strong>&nbsp;<span class='filter'></span>
+      <a class="reset" href="javascript:typeChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+     </div>
+  </div>
+
+  <div class="row">
+    <div id="monthly-volume-chart">
+      <strong>Time</strong><span class='filter'></span>
+      <a class="reset" href="javascript:volumeChart.filterAll();dc.redrawAll();" style="display: none;">reset</a>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-hover dc-data-table"></table>
+  </div>
+  -->
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6">
+  <h2>Top Performers</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rating</th>
+    </tr>
+    <tr>
+      <th>product_name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Ubiquiti Nano Station M900 Loco 900MHz MIMO Air-Max TDMA Station</th>
+      <td>4.842105</td>
+    </tr>
+    <tr>
+      <th>AirLock - Wall/Ceiling Mount for Apple AirPort Express</th>
+      <td>4.840909</td>
+    </tr>
+    <tr>
+      <th>Networking Accessories - 802.3AF Gigabit Power-over-ethernet (poe) Injector</th>
+      <td>4.833333</td>
+    </tr>
+    <tr>
+      <th>Ubiquiti Networks Nanobeam M5 NBE-M5-19   High-Performance 19 dBi airMAX Bridge</th>
+      <td>4.800000</td>
+    </tr>
+    <tr>
+      <th>MikroTik RouterBOARD hAP lite 2.4GHz home Access Point lite</th>
+      <td>4.793103</td>
+    </tr>
+    <tr>
+      <th>Apple AirPort Extreme Base Station ME918LL/A (Certified Refurbished)</th>
+      <td>4.792453</td>
+    </tr>
+    <tr>
+      <th>AirBase - Wall/Ceiling Mount for Apple AirPort Extreme &amp; Time Capsule [Polycarbonate Security Cap NOT Included]</th>
+      <td>4.782609</td>
+    </tr>
+    <tr>
+      <th>Ubiquiti NanoStation loco M5</th>
+      <td>4.710227</td>
+    </tr>
+    <tr>
+      <th>WS-POE-8-48v60w passive PoE - Power Over Ethernet Injector for 8 IP cameras, VOIP phones or Access Points - add PoE to any switch - 48 volts 60 watts</th>
+      <td>4.701299</td>
+    </tr>
+    <tr>
+      <th>Ubiquiti Universal Antenna Mount UB-AM</th>
+      <td>4.680000</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <div class="col-md-6">
+        <h2>Access Point Ratings</h2>
+	{{ dat_div|safe }}
+    <!--<img style="width:100%" src="/static/samsung_1.png"></img>-->
+  </div>
+</div>
+
+<div class="row">
+ <div class="col-md-3">
+<h2>Negative words </h2>
+<table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th>term</th>      <th>correlation</th>    </tr>  </thead>  <tbody>    <tr>      <td>return</td>      <td>-3.623918</td>    </tr>    <tr>      <td>tried</td>      <td>-2.891710</td>    </tr>    <tr>      <td>failed</td>      <td>-2.424233</td>    </tr>    <tr>      <td>months</td>      <td>-1.940498</td>    </tr>    <tr>      <td>slow</td>      <td>-1.870135</td>    </tr>    <tr>      <td>support</td>      <td>-1.607943</td>    </tr>    <tr>      <td>bad</td>      <td>-1.430118</td>    </tr>    <tr>      <td>lost</td>      <td>-1.364626</td>    </tr>    <tr>      <td>days</td>      <td>-1.240543</td>    </tr>    <tr>      <td>work</td>      <td>-1.228637</td>    </tr>    <tr>      <td>warranty</td>      <td>-1.226118</td>    </tr>    <tr>      <td>won</td>      <td>-1.120588</td>    </tr>    <tr>      <td>didn</td>      <td>-1.076490</td>    </tr>    <tr>      <td>even</td>      <td>-1.074640</td>    </tr>    <tr>      <td>reviews</td>      <td>-1.015825</td>    </tr>    <tr>      <td>seagate</td>      <td>-1.003005</td>    </tr>    <tr>      <td>different</td>      <td>-1.001107</td>    </tr>    <tr>      <td>money</td>      <td>-0.996039</td>    </tr>    <tr>      <td>however</td>      <td>-0.899298</td>    </tr>    <tr>      <td>hours</td>      <td>-0.889192</td>    </tr>  </tbody></table> 
+ </div>
+ <div class="col-md-3">
+<h2>&nbsp;</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>term</th>
+      <th>correlation</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>stopped working</td>
+      <td>-2.936046</td>
+    </tr>
+    <tr>
+      <td>drive failed</td>
+      <td>-2.576408</td>
+    </tr>
+    <tr>
+      <td>doesn work</td>
+      <td>-2.212841</td>
+    </tr>
+    <tr>
+      <td>didn work</td>
+      <td>-1.971528</td>
+    </tr>
+    <tr>
+      <td>tech support</td>
+      <td>-1.561453</td>
+    </tr>
+    <tr>
+      <td>customer service</td>
+      <td>-1.442868</td>
+    </tr>
+    <tr>
+      <td>seagate drive</td>
+      <td>-1.072527</td>
+    </tr>
+    <tr>
+      <td>every time</td>
+      <td>-1.024410</td>
+    </tr>
+    <tr>
+      <td>drive work</td>
+      <td>-1.022359</td>
+    </tr>
+    <tr>
+      <td>disk utility</td>
+      <td>-0.967690</td>
+    </tr>
+    <tr>
+      <td>first time</td>
+      <td>-0.954921</td>
+    </tr>
+    <tr>
+      <td>months ago</td>
+      <td>-0.944796</td>
+    </tr>
+    <tr>
+      <td>bought drive</td>
+      <td>-0.938539</td>
+    </tr>
+    <tr>
+      <td>new one</td>
+      <td>-0.937583</td>
+    </tr>
+    <tr>
+      <td>first one</td>
+      <td>-0.936051</td>
+    </tr>
+    <tr>
+      <td>drive would</td>
+      <td>-0.897382</td>
+    </tr>
+    <tr>
+      <td>data drive</td>
+      <td>-0.884709</td>
+    </tr>
+    <tr>
+      <td>even though</td>
+      <td>-0.834426</td>
+    </tr>
+    <tr>
+      <td>worked fine</td>
+      <td>-0.815372</td>
+    </tr>
+    <tr>
+      <td>write speed</td>
+      <td>-0.761644</td>
+    </tr>
+  </tbody>
+</table>
+ </div>
+
+
+
+
+<div class="col-md-3">
+<h2>Positive words</h2>
+<table border="1" class="dataframe">  <thead>    <tr style="text-align: right;">      <th>term</th>      <th>correlation</th>    </tr>    <tr>      <th>0</th>      <th></th>      <th></th>    </tr>  </thead>  <tbody>    <tr>      <td>perfectly</td>      <td>0.757648</td>    </tr>    <tr>      <td>great</td>      <td>0.757500</td>    </tr>    <tr>      <td>best</td>      <td>0.752191</td>    </tr>    <tr>      <td>love</td>      <td>0.651622</td>    </tr>    <tr>      <td>old</td>      <td>0.649256</td>    </tr>    <tr>      <td>quiet</td>      <td>0.638721</td>    </tr>    <tr>      <td>highly</td>      <td>0.623330</td>    </tr>    <tr>      <td>amazing</td>      <td>0.623108</td>    </tr>    <tr>      <td>perfect</td>      <td>0.621396</td>    </tr>    <tr>      <td>excellent</td>      <td>0.617207</td>    </tr>    <tr>      <td>fast</td>      <td>0.608718</td>    </tr>    <tr>      <td>well</td>      <td>0.607677</td>    </tr>    <tr>      <td>always</td>      <td>0.600113</td>    </tr>    <tr>      <td>awesome</td>      <td>0.591413</td>    </tr>    <tr>      <td>seconds</td>      <td>0.575088</td>    </tr>    <tr>      <td>home</td>      <td>0.565843</td>    </tr>    <tr>      <td>running</td>      <td>0.555619</td>    </tr>    <tr>      <td>easy</td>      <td>0.524732</td>    </tr>    <tr>      <td>upgrade</td>      <td>0.524413</td>    </tr>    <tr>      <td>faster</td>      <td>0.523689</td>    </tr>  </tbody></table>
+
+</div>
+
+
+ <div class="col-md-3">
+<h2>&nbsp;</h2>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>term</th>
+      <th>correlation</th>
+    </tr>
+    <tr>
+      <th>0</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>highly recommend</td>
+      <td>0.617908</td>
+    </tr>
+    <tr>
+      <td>highly recommended</td>
+      <td>0.548680</td>
+    </tr>
+    <tr>
+      <td>great hard</td>
+      <td>0.493206</td>
+    </tr>
+    <tr>
+      <td>works perfectly</td>
+      <td>0.478468</td>
+    </tr>
+    <tr>
+      <td>works perfect</td>
+      <td>0.475185</td>
+    </tr>
+    <tr>
+      <td>excellent product</td>
+      <td>0.463747</td>
+    </tr>
+    <tr>
+      <td>old hard</td>
+      <td>0.462692</td>
+    </tr>
+    <tr>
+      <td>works great</td>
+      <td>0.458831</td>
+    </tr>
+    <tr>
+      <td>great flash</td>
+      <td>0.450095</td>
+    </tr>
+    <tr>
+      <td>great value</td>
+      <td>0.448704</td>
+    </tr>
+    <tr>
+      <td>go wrong</td>
+      <td>0.447110</td>
+    </tr>
+    <tr>
+      <td>great product</td>
+      <td>0.445135</td>
+    </tr>
+    <tr>
+      <td>great little</td>
+      <td>0.441387</td>
+    </tr>
+    <tr>
+      <td>great price</td>
+      <td>0.437214</td>
+    </tr>
+    <tr>
+      <td>happy purchase</td>
+      <td>0.427318</td>
+    </tr>
+    <tr>
+      <td>well worth</td>
+      <td>0.424266</td>
+    </tr>
+    <tr>
+      <td>fast reliable</td>
+      <td>0.423725</td>
+    </tr>
+    <tr>
+      <td>exactly needed</td>
+      <td>0.423472</td>
+    </tr>
+    <tr>
+      <td>fast transfer</td>
+      <td>0.415939</td>
+    </tr>
+    <tr>
+      <td>boot time</td>
+      <td>0.410535</td>
+    </tr>
+  </tbody>
+</table>
+
+ </div>
+</div>
+<script src="/static/crossfilter.v1.min.js"></script>
+<script src="/static/d3.v3.min.js"></script>
+<script src="/static/dc.js"></script>
+<script src="/static/mdanalysis.js"></script>
+{{ dat_script|safe }}
+</body>
+</html>
