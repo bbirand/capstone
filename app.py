@@ -6,6 +6,9 @@ from bokeh.palettes import Spectral6, RdYlGn4
 
 from flask import Flask, render_template, request, redirect, Response, send_from_directory
 
+# Load file for all to read
+dat = pd.read_csv("./data/all_types_daily.csv").reset_index()
+
 app = Flask(__name__)
 
 @app.route('/data/<path:path>')
@@ -18,7 +21,6 @@ def send_static(path):
 
 @app.route('/')
 def index():
-  dat = pd.read_csv("./data/all_types_daily.csv").reset_index()
   ap = dat[dat["type"] == "access point"]
   ap["date"] = pd.to_datetime(ap["date"])
 
@@ -42,11 +44,11 @@ def index():
   #for i_f, f in enumerate(features):
   #p.line(dat.index, dat[f], line_width=2, color=RdYlGn4[i_f], legend=f)
 
-  print("date")
-  print(ap["date"])
+  #print("date")
+  #print(ap["date"])
 
-  print("mean")
-  print(ap["mean"])
+  #print("mean")
+  #print(ap["mean"])
 
   p.line(ap["date"], ap["mean"], line_width=2) #, color=RdYlGn4)
 
