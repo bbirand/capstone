@@ -8,8 +8,21 @@ from flask import Flask, render_template, request, redirect, Response, send_from
 
 # Load file for all to read
 dat = pd.read_csv("./data/all_types_daily.csv").reset_index()
+cdat = pd.read_pickle("./data/hd_reviews.pkl")
+product_names = pd.read_pickle("./data/product_names.pkl")
 
 app = Flask(__name__)
+
+@app.route('/api/product_list/')
+def product_list():
+    ''' Return all the products '''
+    return product_names.to_json()
+
+@app.route('/api/get_row/<int:row_id>')
+def get_row(row_id):
+    ''' Return the given review entry '''
+    return cdat.iloc[row_id,:].to_json()
+    return "hello!"
 
 @app.route('/data/<path:path>')
 def send_data(path):

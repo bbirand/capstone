@@ -3,13 +3,9 @@
 <title>Amazon Scraper</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="/static/dc.css"/>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <link href="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.css" rel="stylesheet" type="text/css">
-<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.js"></script>
-
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
 
 <body>
@@ -39,12 +35,15 @@
     </nav>
 
 
+
 <div class="container" style="margin-top:40px">
 
       <div class="starter-template" style="padding: 40px 15px; text-align: center;">
         <h1>Amazon.com Analysis Dashboard</h1>
         <p class="lead">Amazon.com has millions of reviews in tens of thousands of product categories. This data can be extremely valuable for market research purposes. In this project, we aim to createa dashboard that brands can use to track their competitors, understand the most important features in a certain category, and discover which product categories are in markets that are underserved by current offerings.</p>
       </div>
+
+  <div id="categories"></div>
 
   <div class="row">
   <h2>Category Analysis</h2>
@@ -282,7 +281,6 @@
 
 
  <div class="col-md-3">
-<h2>&nbsp;</h2>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -381,10 +379,24 @@
 
  </div>
 </div>
+<script src="/static/main.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="/static/crossfilter.v1.min.js"></script>
 <script src="/static/d3.v3.min.js"></script>
 <script src="/static/dc.js"></script>
 <script src="/static/mdanalysis.js"></script>
+<script>
+//$("#selected_category").change(function() {
+   //var selected_name = $("#selected_category").val();
+   //console.log(selected_name);
+
+   //$.get( "/data/" + selected_name.toLowerCase() + "_processed.json", function( data ) {
+   //  console.log(data);
+   //});
+//})
+</script>
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.10.0.min.js"></script>
 {{ dat_script|safe }}
 </body>
 </html>
